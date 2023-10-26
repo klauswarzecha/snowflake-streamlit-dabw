@@ -12,5 +12,11 @@ st.text('🥑🍞 Avocado Toast')
 st.header('🍌🥭 Build Your Own Fruit Smoothie 🥝🍇')
 
 fruit_url = 'https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.txt' 
+# the tutorial suggests a misleading name
+# my_fruit_list is not a list, but a dataframe!
 my_fruit_list = pd.read_csv(fruit_url)
+my_fruit_list_index = myfruit_list.set_index('Fruit')
+
 st.dataframe(my_fruit_list)
+
+st.write(my_fruit_list_index)
