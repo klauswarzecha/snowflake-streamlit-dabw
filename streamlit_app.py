@@ -16,6 +16,5 @@ fruit_url = 'https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.
 # my_fruit_list is not a list, but a dataframe!
 my_fruit_list = pd.read_csv(fruit_url, index_col='Fruit')
 
+st.multiselect('Pick some fruits', my_fruit_list.index)
 st.dataframe(my_fruit_list)
-
-st.write(my_fruit_list_index)
