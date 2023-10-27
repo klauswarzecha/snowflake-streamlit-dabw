@@ -20,5 +20,10 @@ fruit_url = 'https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.
 my_fruit_list = pd.read_csv(fruit_url)
 my_fruit_list = my_fruit_list.set_index('Fruit')
 # Provide some defaults for the multiselect picker
-st.multiselect('Pick some fruits', my_fruit_list.index, ['Avocado', 'Strawberries'])
-st.dataframe(my_fruit_list)
+fruits_selected = st.multiselect(
+    'Pick some fruits', 
+    list(my_fruit_list.index), 
+    ['Avocado', 'Strawberries']
+)
+fruits_to_show = my_fruits_list.loc(fruits_selected)
+st.dataframe(fruits_to_show)
