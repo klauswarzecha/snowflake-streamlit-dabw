@@ -25,6 +25,5 @@ fruits_selected = st.multiselect(
     ['Avocado', 'Strawberries']
 )
 
-st.write(type(fruits_selected))
-# fruits_to_show = my_fruits_list.loc[fruits_selected]
-# st.dataframe(fruits_to_show)
+fruits_to_show = my_fruit_list.loc[fruits_selected]
+st.dataframe(fruits_to_show)
