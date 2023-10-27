@@ -13,10 +13,10 @@ st.header('🍌🥭 Build Your Own Fruit Smoothie 🥝🍇')
 
 fruit_url = 'https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.txt' 
 
-# my_fruit_list = pd.read_csv(fruit_url, index_col='Fruit')
+my_fruit_list = pd.read_csv(fruit_url, index_col='Fruit')
 # The tutorial uses two steps instead of one
-my_fruit_list = pd.read_csv(fruit_url)
-my_fruit_list = my_fruit_list.set_index('Fruit')
+# my_fruit_list = pd.read_csv(fruit_url)
+# my_fruit_list = my_fruit_list.set_index('Fruit')
 
 # Provide some defaults for the multiselect picker
 fruits_selected = st.multiselect(
@@ -24,5 +24,7 @@ fruits_selected = st.multiselect(
     list(my_fruit_list.index), 
     ['Avocado', 'Strawberries']
 )
-fruits_to_show = my_fruits_list.loc[fruits_selected]
-st.dataframe(fruits_to_show)
+
+st.write(fruits_selected)
+# fruits_to_show = my_fruits_list.loc[fruits_selected]
+# st.dataframe(fruits_to_show)
