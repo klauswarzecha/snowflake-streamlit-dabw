@@ -3,7 +3,6 @@ import requests
 import streamlit as st
 from snowflake import connector as sfc
 
-# secrets = st.secrets.get('snowflake')
 my_cnx = sfc.connect(**st.secrets.snowflake)
 my_cur = my_cnx.cursor()
 my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
