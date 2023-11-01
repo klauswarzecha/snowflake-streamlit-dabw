@@ -1,7 +1,7 @@
 import pandas as pd
 import requests
 import streamlit as st
-import snowflake.connector as sfc
+from snowflake import connector as sfc
 
 secrets = st.secrets['snowflake']
 my_cnx = sfc.connect(**secrets)
