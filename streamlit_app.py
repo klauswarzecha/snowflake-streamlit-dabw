@@ -29,7 +29,7 @@ fruits_selected = st.multiselect(
 fruits_to_show = my_fruit_list.loc[fruits_selected]
 st.dataframe(fruits_to_show)
 
-st.header('Fruityvice Fruit Advice'!)
+st.header('Fruityvice Fruit Advice!')
 fruity_url = 'https://fruityvice.com/api/fruit/watermelon'
 response = requests.get(fruity_url)
 st.text(response.json())
