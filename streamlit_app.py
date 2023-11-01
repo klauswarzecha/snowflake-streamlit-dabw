@@ -5,7 +5,6 @@ from snowflake import connector as sfc
 
 secrets = st.secrets.get('snowflake')
 st.text(secrets)
-st.text(**secrets)
 # my_cnx = sfc.connect(**secrets)
 # my_cur = my_cnx.cursor()
 # my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
