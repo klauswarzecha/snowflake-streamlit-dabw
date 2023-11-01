@@ -29,5 +29,6 @@ fruits_selected = st.multiselect(
 fruits_to_show = my_fruit_list.loc[fruits_selected]
 st.dataframe(fruits_to_show)
 
-fruityvice_response = requests.get('https://fruityvice.com/api/fruit/watermelon')
-streamlit.text(fruityvice_response.status_code)
+fruity_url = 'https://fruityvice.com/api/fruit/watermelon'
+response = requests.get(fruity_url)
+st.text(response.status_code)
