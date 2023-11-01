@@ -1,3 +1,4 @@
+
 import pandas as pd
 import requests
 import streamlit as st
@@ -51,3 +52,8 @@ my_data_rows = my_cur.fetchall()
 # NOTE: this is a list of tuples
 st.header('The fruit load list contains:')
 st.dataframe(my_data_rows)
+
+add_fruit_question = 'What fruit would you like to add?'
+add_fruit_default = 'lemon'
+add_fruit_choice = st.text_input(add_fruit_question, add_fruit_default)
+st.text(f'Thank you for adding {add_fruit_choice}')
