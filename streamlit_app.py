@@ -32,4 +32,7 @@ st.dataframe(fruits_to_show)
 st.header('Fruityvice Fruit Advice!')
 fruity_url = 'https://fruityvice.com/api/fruit/watermelon'
 response = requests.get(fruity_url)
-st.text(response.json())
+# pd.json_normalize converts JSON to a flat table
+fruity_tabular = pd.json_normalize(response.json())
+st.text(type(fruity_tabular))
+st.dataframe(fruity_tabular)
