@@ -31,4 +31,4 @@ st.dataframe(fruits_to_show)
 
 fruity_url = 'https://fruityvice.com/api/fruit/watermelon'
 response = requests.get(fruity_url)
-st.text(response.status_code)
+st.text(response.json())
