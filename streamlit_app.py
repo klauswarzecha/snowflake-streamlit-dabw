@@ -3,14 +3,6 @@ import requests
 import streamlit as st
 from snowflake import connector as sfc
 
-my_cnx = sfc.connect(**st.secrets.snowflake)
-my_cur = my_cnx.cursor()
-my_cur.execute("select * from fruit_load_list")
-my_data_row = my_cur.fetchone()
-st.text('The fruit load list contains:')
-st.text(my_data_row)
-
-    
 st.title('My Parents New Healthy Diner')
 
 st.header('Breakfast Menu')
@@ -50,3 +42,10 @@ fruity_tabular = pd.json_normalize(response.json())
 # type of fruity_tabular is
 # <class 'pandas.core.frame.DataFrame'>
 st.dataframe(fruity_tabular)
+
+my_cnx = sfc.connect(**st.secrets.snowflake)
+my_cur = my_cnx.cursor()
+my_cur.execute("select * from fruit_load_list")
+my_data_row = my_cur.fetchone()
+st.text('The fruit load list contains:')
+st.text(my_data_row)
