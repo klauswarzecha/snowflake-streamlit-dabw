@@ -48,5 +48,6 @@ my_cur = my_cnx.cursor()
 my_cur.execute("select * from fruit_load_list")
 # Fetch the whole list
 my_data_rows = my_cur.fetchall()
-st.text('The fruit load list contains:')
-st.text(my_data_rows)
+# NOTE: this is a list of tuples
+st.header('The fruit load list contains:')
+st.dataframe(my_data_rows)
