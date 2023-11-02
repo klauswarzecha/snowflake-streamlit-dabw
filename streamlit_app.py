@@ -22,8 +22,9 @@ def get_fruit_load_list():
 def insert_row_snowflake(new_fruit):
     """"Append new fruit to list"""
     with my_cnx.cursor() as my_cursor:
-        my_cursor.execute("insert into fruit_load_list values ('still broken')")
-        return f'Thank you for adding {add_fruit_choice} (just kidding).'
+        my_cursor.execute("insert into fruit_load_list values ('" + new_fruit + "')")
+        # my_cursor.execute(f"insert into fruit_load_list values ('" +  + "')")
+        return f'Thank you for adding {new_fruit}.'
     
 st.title('My Parents New Healthy Diner')
 
