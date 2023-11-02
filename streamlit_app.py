@@ -1,8 +1,8 @@
-
 import pandas as pd
 import requests
 import streamlit as st
 from snowflake import connector as sfc
+from urllib.error import URLError
 
 st.title('My Parents New Healthy Diner')
 
@@ -31,18 +31,26 @@ fruits_selected = st.multiselect(
 fruits_to_show = my_fruit_list.loc[fruits_selected]
 st.dataframe(fruits_to_show)
 
-# Fruityvice
+# Fruityvice advice from API 
 st.header('Fruityvice Fruit Advice!')
-fruit_default = 'Kiwi'
+# fruit_default = 'Kiwi'
 fruit_question = 'What fruit would you like information about?'
-fruit_choice = st.text_input(fruit_question, fruit_default)
-fruity_url = f'https://fruityvice.com/api/fruit/{fruit_choice}'
-response = requests.get(fruity_url)
-fruity_tabular = pd.json_normalize(response.json())
-# pd.json_normalize converts JSON to a flat table/dataframe
-# type of fruity_tabular is
-# <class 'pandas.core.frame.DataFrame'>
-st.dataframe(fruity_tabular)
+try: 
+    fruit_choice = st.text_input(fruit_question)
+    if not fruit_choice:
+        st.error('Please select a fruit to get information')
+    else:
+        fruity_url = f'https://fruityvice.com/api/fruit/{fruit_choice}'
+        response = requests.get(fruity_url)
+        fruity_tabular = pd.json_normalize(response.json())
+        # pd.json_normalize converts JSON to a flat table/dataframe
+        # type of fruity_tabular is
+        # <class 'pandas.core.frame.DataFrame'>
+        st.dataframe(fruity_tabular)
+except URLError as e:
+    st.error()
+
+st.stop()
 
 my_cnx = sfc.connect(**st.secrets.snowflake)
 my_cur = my_cnx.cursor()
