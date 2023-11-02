@@ -57,3 +57,4 @@ add_fruit_question = 'What fruit would you like to add?'
 add_fruit_default = 'lemon'
 add_fruit_choice = st.text_input(add_fruit_question, add_fruit_default)
 st.text(f'Thank you for adding {add_fruit_choice}')
+my_cur.execute("insert into fruit_load_list values ('from streamlit')")
