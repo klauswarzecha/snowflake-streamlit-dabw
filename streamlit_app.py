@@ -13,6 +13,12 @@ def get_fruityvice_data(fruit_choice):
     fruity_tabular = pd.json_normalize(response.json())
     return fruity_tabular
 
+def get_fruit_load_list():
+    """Fetch the complete fruit list"""
+    with my_cnx.cursor as my_cursor:
+        my_cur.execute("select * from fruit_load_list")
+        return my_cur.fetchall()
+
 st.title('My Parents New Healthy Diner')
 
 st.header('Breakfast Menu')
@@ -55,16 +61,11 @@ try:
 except URLError as e:
     st.error()
 
-st.stop()
-
-my_cnx = sfc.connect(**st.secrets.snowflake)
-my_cur = my_cnx.cursor()
-my_cur.execute("select * from fruit_load_list")
-# Fetch the whole list
-my_data_rows = my_cur.fetchall()
-# NOTE: this is a list of tuples
-st.header('The fruit load list contains:')
-st.dataframe(my_data_rows)
+if st.button('Get Fruit Load List'):
+    my_cnx = sfc.connect(**st.secrets.snowflake)
+    my_data_rows = get_fruit_load_list()
+    st.header('The fruit load list contains:')
+    st.dataframe(my_data_rows)
 
 add_fruit_question = 'What fruit would you like to add?'
 add_fruit_default = 'lemon'
