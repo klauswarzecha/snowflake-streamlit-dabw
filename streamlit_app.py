@@ -13,9 +13,9 @@ def get_fruityvice_data(fruit_choice):
     fruity_tabular = pd.json_normalize(response.json())
     return fruity_tabular
 
-def get_fruit_load_list():
+def get_fruit_load_list(connection):
     """Fetch the complete fruit list"""
-    with my_cnx.cursor as my_cur:
+    with collection.cursor() as my_cur:
         my_cur.execute("select * from fruit_load_list")
         return my_cur.fetchall()
 
@@ -63,7 +63,7 @@ except URLError as e:
 
 if st.button('Get Fruit Load List'):
     my_cnx = sfc.connect(**st.secrets.snowflake)
-    my_data_rows = get_fruit_load_list()
+    my_data_rows = get_fruit_load_list(my_cnx)
     st.header('The fruit load list contains:')
     st.dataframe(my_data_rows)
 
