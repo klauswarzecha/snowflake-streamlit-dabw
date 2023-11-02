@@ -48,7 +48,6 @@ st.dataframe(fruits_to_show)
 
 # Fruityvice advice from API 
 st.header('Fruityvice Fruit Advice!')
-
 fruit_question = 'What fruit would you like information about?'
 try: 
     fruit_choice = st.text_input(fruit_question)
@@ -57,17 +56,17 @@ try:
     else:
         fruity_tabular = get_fruityvice_data(fruit_choice) 
         st.dataframe(fruity_tabular)
-
 except URLError as e:
     st.error()
 
+# Load fruit list
 if st.button('Get Fruit Load List'):
     my_cnx = sfc.connect(**st.secrets.snowflake)
-    # use my_cnx in function
     my_data_rows = get_fruit_load_list()
     st.header('The fruit load list contains:')
     st.dataframe(my_data_rows)
 
+st.stop()
 add_fruit_question = 'What fruit would you like to add?'
 add_fruit_default = 'lemon'
 add_fruit_choice = st.text_input(add_fruit_question, add_fruit_default)
