@@ -15,7 +15,7 @@ def get_fruityvice_data(fruit_choice):
 
 def get_fruit_load_list(connection):
     """Fetch the complete fruit list"""
-    with collection.cursor() as my_cur:
+    with connection.cursor() as my_cur:
         my_cur.execute("select * from fruit_load_list")
         return my_cur.fetchall()
 
