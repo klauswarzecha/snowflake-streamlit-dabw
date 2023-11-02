@@ -4,6 +4,15 @@ import streamlit as st
 from snowflake import connector as sfc
 from urllib.error import URLError
 
+
+def get_fruityvice_data(fruit_choice)
+    """Return nutrition data for a selected fruit obtained
+    from an API call to fruityvice"""
+    fruity_url = f'https://fruityvice.com/api/fruit/{fruit_choice}'
+    response = requests.get(fruity_url)
+    fruity_tabular = pd.json_normalize(response.json())
+    return fruity_tabular
+
 st.title('My Parents New Healthy Diner')
 
 st.header('Breakfast Menu')
@@ -33,20 +42,16 @@ st.dataframe(fruits_to_show)
 
 # Fruityvice advice from API 
 st.header('Fruityvice Fruit Advice!')
-# fruit_default = 'Kiwi'
+
 fruit_question = 'What fruit would you like information about?'
 try: 
     fruit_choice = st.text_input(fruit_question)
     if not fruit_choice:
         st.error('Please select a fruit to get information')
     else:
-        fruity_url = f'https://fruityvice.com/api/fruit/{fruit_choice}'
-        response = requests.get(fruity_url)
-        fruity_tabular = pd.json_normalize(response.json())
-        # pd.json_normalize converts JSON to a flat table/dataframe
-        # type of fruity_tabular is
-        # <class 'pandas.core.frame.DataFrame'>
+        fruity_tabular = get_fruityvice_data(fruit_choice) 
         st.dataframe(fruity_tabular)
+
 except URLError as e:
     st.error()
 
