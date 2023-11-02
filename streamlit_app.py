@@ -19,6 +19,12 @@ def get_fruit_load_list():
         my_cur.execute("select * from fruit_load_list")
         return my_cur.fetchall()
 
+def insert_row_snowflake(new_fruit):
+    """"Append new fruit to list"""
+    with my_cnx.cursor() as my_cursor:
+        my_cursor.execute("insert into fruit_load_list ('still broken')")
+        return f'Thank you for adding {add_fruit_choice} (just kidding).'
+    
 st.title('My Parents New Healthy Diner')
 
 st.header('Breakfast Menu')
@@ -66,9 +72,10 @@ if st.button('Get Fruit Load List'):
     st.header('The fruit load list contains:')
     st.dataframe(my_data_rows)
 
-st.stop()
+# st.stop()
 add_fruit_question = 'What fruit would you like to add?'
-add_fruit_default = 'lemon'
-add_fruit_choice = st.text_input(add_fruit_question, add_fruit_default)
-st.text(f'Thank you for adding {add_fruit_choice}')
-my_cur.execute("insert into fruit_load_list values ('from streamlit')")
+add_fruit_choice = st.text_input(add_fruit_question)
+if add_fruit_choice:
+    my_cnx = sfc.connect(**st.secrets.snowflake)
+    message = insert_row_snowflake(add_fruit_choice)
+    st.text(message)
