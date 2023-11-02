@@ -67,16 +67,18 @@ except URLError as e:
     st.error()
 
 # Load fruit list
-if st.button('Get Fruit Load List'):
+if st.button('Get Fruit List'):
     my_cnx = sfc.connect(**st.secrets.snowflake)
     my_data_rows = get_fruit_load_list()
     st.header('The fruit load list contains:')
     st.dataframe(my_data_rows)
-
-# st.stop()
+    my_cnx.close()
+    
 add_fruit_question = 'What fruit would you like to add?'
 add_fruit_choice = st.text_input(add_fruit_question)
 if add_fruit_choice:
     my_cnx = sfc.connect(**st.secrets.snowflake)
     message = insert_row_snowflake(add_fruit_choice)
     st.text(message)
+    my_cnx.close()
+    
