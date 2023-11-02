@@ -5,7 +5,7 @@ from snowflake import connector as sfc
 from urllib.error import URLError
 
 
-def get_fruityvice_data(fruit_choice)
+def get_fruityvice_data(fruit_choice):
     """Return nutrition data for a selected fruit obtained
     from an API call to fruityvice"""
     fruity_url = f'https://fruityvice.com/api/fruit/{fruit_choice}'
